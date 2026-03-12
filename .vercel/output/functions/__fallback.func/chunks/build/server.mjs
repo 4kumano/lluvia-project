@@ -13,8 +13,6 @@ import 'node:buffer';
 import '@iconify/utils';
 import 'node:crypto';
 import 'consola';
-import 'node:url';
-import 'ipx';
 import 'node:fs';
 import 'node:path';
 
@@ -584,7 +582,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-VqdxeScO.mjs')
+    component: () => import('./index-C9I4w9K2.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

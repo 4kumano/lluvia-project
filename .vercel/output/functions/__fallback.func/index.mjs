@@ -6,8 +6,6 @@ import 'node:buffer';
 import '@iconify/utils';
 import 'node:crypto';
 import 'consola';
-import 'node:url';
-import 'ipx';
 import 'node:fs';
 import 'node:path';
 

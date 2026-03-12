@@ -103,7 +103,7 @@
                 
                 <div class="absolute bottom-0 left-0 w-full p-4 text-center text-white">
                   <h3 class="text-xl lg:text-2xl font-extrabold drop-shadow-lg">{{ member.name }}</h3>
-                  <p class="text-sky-200 text-xs font-semibold tracking-wider drop-shadow-md uppercase mt-1">{{ member.role }}</p>
+                  <!-- <p class="text-sky-200 text-xs font-semibold tracking-wider drop-shadow-md uppercase mt-1">{{ member.role }}</p> -->
                 </div>
               </figure>
 
@@ -166,40 +166,40 @@
 <script setup>
 const members = [
   {
-    name: 'Aiko',
-    role: 'Main Vocal & Center',
+    name: 'Airie',
+
     image: '/images/member-1.jpg', // Siapkan foto member-1.jpg di folder public/images/
     catchphrase: 'Senyumku akan mengalihkan duniamu!',
     instagram: '#',
     twitter: '#'
   },
   {
-    name: 'Sakura',
-    role: 'Lead Dancer',
+    name: 'Rara',
+
     image: '/images/member-2.jpg',
     catchphrase: 'Menari di bawah rintik hujan bersamamu.',
     instagram: '#',
     twitter: '#'
   },
   {
-    name: 'Rina',
-    role: 'Visual & Rapper',
+    name: 'Dede',
+    
     image: '/images/member-3.jpg',
     catchphrase: 'Visual yang siap mencuri hatimu dalam sekejap.',
     instagram: '#',
     twitter: '#'
   },
   {
-    name: 'Yumi',
-    role: 'Lead Vocal',
+    name: 'Mily',
+    
     image: '/images/member-4.jpg',
     catchphrase: 'Suaraku adalah pelukan hangat untukmu.',
     instagram: '#',
     twitter: '#'
   },
   {
-    name: 'Mio',
-    role: 'Maknae (Member Termuda)',
+    name: 'Yora',
+
     image: '/images/member-5.jpg',
     catchphrase: 'Si bungsu yang selalu butuh dukungan dari kakak-kakak!',
     instagram: '#',

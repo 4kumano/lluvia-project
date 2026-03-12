@@ -61,10 +61,6 @@
       "dest": "/api/_nuxt_icon/[collection]"
     },
     {
-      "src": "/_ipx/(?:.*)",
-      "dest": "/_ipx/[...]"
-    },
-    {
       "src": "/__nuxt_island/(?:.*)",
       "dest": "/__nuxt_island/[...]"
     },
@@ -72,5 +68,20 @@
       "src": "/(.*)",
       "dest": "/__fallback"
     }
-  ]
+  ],
+  "images": {
+    "domains": [],
+    "minimumCacheTTL": 300,
+    "sizes": [
+      640,
+      768,
+      1024,
+      1280,
+      1536
+    ],
+    "formats": [
+      "image/webp",
+      "image/avif"
+    ]
+  }
 }

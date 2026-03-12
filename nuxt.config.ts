@@ -23,6 +23,7 @@ export default defineNuxtConfig({
 
   // Konfigurasi Nuxt Image
   image: {
+    provider: 'vercel',
     format: ['webp', 'avif', 'jpeg', 'png'],
     quality: 80,
   },

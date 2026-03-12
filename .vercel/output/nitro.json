@@ -1,5 +1,5 @@
 {
-  "date": "2026-03-12T12:24:38.844Z",
+  "date": "2026-03-12T12:34:50.199Z",
   "preset": "vercel",
   "framework": {
     "name": "nuxt",
@@ -14,7 +14,24 @@
   },
   "config": {
     "vercel": {
-      "skewProtection": false
+      "skewProtection": false,
+      "config": {
+        "images": {
+          "domains": [],
+          "minimumCacheTTL": 300,
+          "sizes": [
+            640,
+            768,
+            1024,
+            1280,
+            1536
+          ],
+          "formats": [
+            "image/webp",
+            "image/avif"
+          ]
+        }
+      }
     }
   }
 }
