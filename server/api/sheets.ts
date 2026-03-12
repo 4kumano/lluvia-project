@@ -133,6 +133,7 @@ function transformRow(row: Record<string, any>, sheet: string): Record<string, a
     case 'cta':
       return {
         name: (row.nama || '').toLowerCase(),
+        image: driveUrlToDirectImage(row.image || ''),
         form: row.form || '#',
       }
 

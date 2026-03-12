@@ -359,8 +359,8 @@
           <!-- Order Cheki Card -->
           <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-pink-100 group">
             <figure class="relative h-64 m-4 rounded-xl overflow-hidden">
-              <NuxtImg 
-                src="/images/cheki_example.webp" 
+              <img 
+                :src="chekiImage" 
                 alt="Contoh Cheki" 
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -380,8 +380,8 @@
           <!-- Order Merch Card -->
           <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-sky-100 group">
             <figure class="relative h-64 m-4 rounded-xl overflow-hidden">
-              <NuxtImg 
-                src="/images/merch.webp" 
+              <img 
+                :src="merchImage" 
                 alt="Official Merch" 
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -623,15 +623,25 @@ const contact = computed(() => {
   return fallbackContact
 })
 
-// CTA: get form links for cheki and merch
+// CTA: get form & image links for cheki and merch
 const chekiFormLink = computed(() => {
   const cta = ctaData.value?.data?.find(c => c.name === 'cheki')
   return cta?.form || '#'
 })
 
+const chekiImage = computed(() => {
+  const cta = ctaData.value?.data?.find(c => c.name === 'cheki')
+  return cta?.image || '/images/cheki_example.webp'
+})
+
 const merchFormLink = computed(() => {
   const cta = ctaData.value?.data?.find(c => c.name === 'merch')
   return cta?.form || '#'
+})
+
+const merchImage = computed(() => {
+  const cta = ctaData.value?.data?.find(c => c.name === 'merch')
+  return cta?.image || '/images/merch.webp'
 })
 
 // ============================================================
