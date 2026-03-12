@@ -4182,6 +4182,9 @@ const inlineAppConfig = {
       "zondicons"
     ],
     "fetchTimeout": 1500
+  },
+  "__swiper": {
+    "bundled": true
   }
 };
 
@@ -4285,7 +4288,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "ca5d3d58-4e23-4891-b995-b98a76d07baa",
+    "buildId": "ff2f269b-9ecb-47c1-880f-d0e5c386a6d2",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4832,7 +4835,7 @@ const collections = {
 };
 
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _EasYfs = defineCachedEventHandler(async (event) => {
+const _Uv4ZLN = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError$1({ status: 400, message: "Invalid icon request" });
@@ -4882,7 +4885,7 @@ const _EasYfs = defineCachedEventHandler(async (event) => {
   // 1 week
 });
 
-const _uRPf0g = lazyEventHandler(() => {
+const _zk5kQs = lazyEventHandler(() => {
   const opts = useRuntimeConfig().ipx || {};
   const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
   const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
@@ -4900,14 +4903,14 @@ const _uRPf0g = lazyEventHandler(() => {
   return useBase(opts.baseURL, ipxHandler);
 });
 
-const _lazy_mYQmg1 = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
+const _lazy_k4lJUa = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_mYQmg1, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_k4lJUa, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _EasYfs, lazy: false, middleware: false, method: undefined },
-  { route: '/_ipx/**', handler: _uRPf0g, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_mYQmg1, lazy: true, middleware: false, method: undefined }
+  { route: '/api/_nuxt_icon/:collection', handler: _Uv4ZLN, lazy: false, middleware: false, method: undefined },
+  { route: '/_ipx/**', handler: _zk5kQs, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_k4lJUa, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

@@ -584,7 +584,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BG8z7L0A.mjs')
+    component: () => import('./index-VNTANFcX.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -930,7 +930,7 @@ const revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms = /* @__
     }
   }
 });
-const LazyIcon = defineAsyncComponent(() => import('./index-BH0J-geV.mjs').then((r) => r["default"] || r.default || r));
+const LazyIcon = defineAsyncComponent(() => import('./index-Mi_5Zi5g.mjs').then((r) => r["default"] || r.default || r));
 const lazyGlobalComponents = [
   ["Icon", LazyIcon]
 ];
@@ -2990,6 +2990,9 @@ const inlineConfig = {
       "zondicons"
     ],
     "fetchTimeout": 1500
+  },
+  "__swiper": {
+    "bundled": true
   }
 };
 const __appConfig = /* @__PURE__ */ defuFn(inlineConfig);
@@ -3166,8 +3169,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-DQ5Cwie8.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-BjXtR-Ri.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-CYoVWEDY.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-CjPrvDLt.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));

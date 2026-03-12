@@ -66,9 +66,64 @@
       </div>
     </section>
 
-    <section id="members" class="py-20 px-4">
-      <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
-        <h2 class="text-3xl font-bold text-sky-700">Member Profiles (To Be Added)</h2>
+    <section id="members" class="py-24 px-4 relative overflow-hidden">
+      <div class="max-w-[1664px] mx-auto">
+        
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+          class="text-center mb-12"
+        >
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Meet The Members</h2>
+          <p class="text-sky-500 mt-3 text-lg font-medium">Bintang-bintang yang akan mencerahkan harimu</p>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 sm:grid sm:grid-cols-3 lg:grid-cols-5 md:gap-6">
+          <div 
+            v-for="(member, index) in members"
+            :key="index"
+            v-motion
+            :initial="{ opacity: 0, y: 40 }"
+            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 150 } }"
+            class="w-[calc(50%-0.5rem)] sm:w-auto"
+          >
+            <div class="card bg-white shadow-xl border-2 border-sky-50 overflow-hidden hover:shadow-sky-200/50 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              
+              <figure class="relative aspect-[4/5]">
+                <NuxtImg 
+                  :src="member.image" 
+                  :alt="member.name"
+                  class="object-cover w-full h-full"
+                  loading="lazy"
+                  placeholder
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-sky-900/90 via-sky-900/20 to-transparent"></div>
+                
+                <div class="absolute bottom-0 left-0 w-full p-4 text-center text-white">
+                  <h3 class="text-xl lg:text-2xl font-extrabold drop-shadow-lg">{{ member.name }}</h3>
+                  <p class="text-sky-200 text-xs font-semibold tracking-wider drop-shadow-md uppercase mt-1">{{ member.role }}</p>
+                </div>
+              </figure>
+
+              <div class="card-body items-center text-center p-3 md:p-4 bg-gradient-to-b from-white to-sky-50">
+                <p class="text-gray-600 text-xs italic line-clamp-2">"{{ member.catchphrase }}"</p>
+                
+                <div class="flex gap-3 mt-3">
+                  <a :href="member.instagram" target="_blank" class="btn btn-circle btn-xs btn-ghost text-sky-400 hover:text-pink-500 hover:bg-pink-50 transition-colors">
+                    <Icon name="mdi:instagram" class="w-4 h-4" />
+                  </a>
+                  <a :href="member.twitter" target="_blank" class="btn btn-circle btn-xs btn-ghost text-sky-400 hover:text-sky-600 hover:bg-sky-100 transition-colors">
+                    <Icon name="mdi:twitter" class="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -109,8 +164,48 @@
 </template>
 
 <script setup>
-// Bagian ini nanti digunakan untuk logika interaktif (API calls, data reactive, dll)
-// Nuxt 4 otomatis meng-import banyak hal (auto-imports), jadi kita biarkan kosong dulu.
+const members = [
+  {
+    name: 'Aiko',
+    role: 'Main Vocal & Center',
+    image: '/images/member-1.jpg', // Siapkan foto member-1.jpg di folder public/images/
+    catchphrase: 'Senyumku akan mengalihkan duniamu!',
+    instagram: '#',
+    twitter: '#'
+  },
+  {
+    name: 'Sakura',
+    role: 'Lead Dancer',
+    image: '/images/member-2.jpg',
+    catchphrase: 'Menari di bawah rintik hujan bersamamu.',
+    instagram: '#',
+    twitter: '#'
+  },
+  {
+    name: 'Rina',
+    role: 'Visual & Rapper',
+    image: '/images/member-3.jpg',
+    catchphrase: 'Visual yang siap mencuri hatimu dalam sekejap.',
+    instagram: '#',
+    twitter: '#'
+  },
+  {
+    name: 'Yumi',
+    role: 'Lead Vocal',
+    image: '/images/member-4.jpg',
+    catchphrase: 'Suaraku adalah pelukan hangat untukmu.',
+    instagram: '#',
+    twitter: '#'
+  },
+  {
+    name: 'Mio',
+    role: 'Maknae (Member Termuda)',
+    image: '/images/member-5.jpg',
+    catchphrase: 'Si bungsu yang selalu butuh dukungan dari kakak-kakak!',
+    instagram: '#',
+    twitter: '#'
+  }
+]
 </script>
 
 <style>
