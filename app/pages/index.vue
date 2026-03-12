@@ -26,7 +26,7 @@
       </div>
     </nav>
 
-    <section id="home" class="relative w-full min-h-screen flex flex-col items-center justify-center pt-10 pb-32 overflow-hidden">
+    <section id="home" class="relative w-full min-h-screen flex flex-col items-center justify-center pt-20 pb-16 md:pt-10 md:pb-32 overflow-hidden">
       <div class="relative w-full max-w-6xl mx-auto px-4">
         
         <div 
@@ -60,13 +60,13 @@
       </div>
     </section>
 
-    <section id="events" class="py-20 px-4">
+    <section id="events" class="py-12 md:py-20 px-4">
       <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
         <h2 class="text-3xl font-bold text-sky-700">Upcoming Events (To Be Added)</h2>
       </div>
     </section>
 
-    <section id="members" class="py-24 px-4 relative overflow-hidden">
+    <section id="members" class="py-16 md:py-24 px-4 relative overflow-hidden">
       <div class="max-w-[1664px] mx-auto">
         
         <div 
@@ -127,13 +127,13 @@
       </div>
     </section>
 
-    <section id="gallery" class="py-20 px-4">
+    <section id="gallery" class="py-12 md:py-20 px-4">
       <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
         <h2 class="text-3xl font-bold text-sky-700">Gallery (To Be Added)</h2>
       </div>
     </section>
 
-    <section id="contact" class="py-20 px-4 bg-white/60 mt-10">
+    <section id="contact" class="py-12 md:py-20 px-4 bg-white/60 mt-4 md:mt-10">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-4xl font-bold text-sky-700 mb-6">Contact & Inquiries</h2>
         <p class="text-lg text-gray-600 mb-8">

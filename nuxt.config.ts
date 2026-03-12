@@ -6,9 +6,19 @@ export default defineNuxtConfig({
   // Favicon & meta head
   app: {
     head: {
+      htmlAttrs: {
+        'data-theme': 'light'
+      },
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/icon.ico' }
       ]
+    }
+  },
+
+  // Tailwind configuration
+  tailwindcss: {
+    config: {
+      darkMode: 'class'
     }
   },
 
