@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    public: {
+      googleSheetId: '', // Set via NUXT_PUBLIC_GOOGLE_SHEET_ID env var
+    }
+  },
+
   // Favicon & meta head
   app: {
     head: {

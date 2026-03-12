@@ -77,111 +77,6 @@
       </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section id="cta" class="pt-20 pb-4 md:pt-16 md:pb-8 px-4 relative z-10 mt-24 md:mt-0">
-      <div 
-        class="max-w-4xl mx-auto"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
-      >
-        <div class="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center items-center">
-          
-          <!-- Order Cheki Card -->
-          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-pink-100 group">
-            <figure class="px-6 pt-6 relative h-56 bg-gradient-to-br from-pink-50 to-pink-100 m-4 rounded-xl flex flex-col justify-center items-center overflow-hidden">
-              <Icon name="mdi:camera-party-mode" class="w-20 h-20 text-pink-300 group-hover:scale-110 transition-transform duration-300" />
-              <span class="mt-2 text-pink-400 font-semibold italic text-sm">Contoh Gambar Cheki</span>
-            </figure>
-            <div class="card-body items-center text-center pt-0 pb-8">
-              <h2 class="card-title text-2xl font-bold text-sky-700">Order Cheki</h2>
-              <p class="text-gray-500 text-sm mb-4">Dapatkan foto polaroid eksklusif bersama member favoritmu!</p>
-              <div class="card-actions">
-                <a href="#" target="_blank" class="btn bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <Icon name="mdi:cart-outline" class="w-5 h-5 mr-1" /> Pesan Sekarang
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Order Merch Card -->
-          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-sky-100 group">
-            <figure class="px-6 pt-6 relative h-56 bg-gradient-to-bl from-sky-50 to-sky-100 m-4 rounded-xl flex flex-col justify-center items-center overflow-hidden">
-              <Icon name="mdi:tshirt-crew" class="w-20 h-20 text-sky-300 group-hover:scale-110 transition-transform duration-300" />
-              <span class="mt-2 text-sky-400 font-semibold italic text-sm">Contoh Gambar Merch</span>
-            </figure>
-            <div class="card-body items-center text-center pt-0 pb-8">
-              <h2 class="card-title text-2xl font-bold text-sky-700">Official Merch</h2>
-              <p class="text-gray-500 text-sm mb-4">Koleksi merchandise resmi Lluvia untuk menemanimu!</p>
-              <div class="card-actions">
-                <a href="#" target="_blank" class="btn bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-500 hover:to-indigo-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <Icon name="mdi:shopping-outline" class="w-5 h-5 mr-1" /> Lihat Katalog
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PANDUAN MENGUBAH JARAK SECTION EVENTS (Jarak Home dengan Events): -->
-    <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
-    <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
-    <section id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
-      <div class="max-w-4xl mx-auto">
-        <div 
-          class="text-center mb-10"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
-        >
-          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Upcoming Events</h2>
-          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
-        </div>
-
-        <div class="flex flex-col items-center gap-4">
-          <div 
-            v-for="(event, index) in events"
-            :key="index"
-            v-motion
-            :initial="{ opacity: 0, y: 20 }"
-            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
-            class="w-full max-w-lg group block p-4 bg-white rounded-2xl border border-sky-100 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-200 transition-all duration-300"
-          >
-              <div class="flex gap-4 items-center">
-                  
-                  <div class="flex-none text-center bg-sky-50 rounded-2xl p-4 min-w-[80px] group-hover:bg-sky-100 transition-colors">
-                      <span class="block text-xs uppercase font-bold text-gray-500">{{ event.date.month }}</span>
-                      <span class="block text-3xl font-black text-sky-600">{{ event.date.day }}</span>
-                      <span class="block text-xs font-bold text-gray-500">{{ event.date.year }}</span>
-                  </div>
-
-                  <div class="flex-1 min-w-0 text-left">
-                      <h4 class="font-bold text-lg truncate group-hover:text-sky-600 transition-colors">
-                          {{ event.name }}
-                      </h4>
-                      <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
-                          <Icon name="heroicons:map-pin" class="w-4 h-4 text-sky-500 shrink-0" />
-                          <span class="truncate">{{ event.location }}</span>
-                      </p>
-                      <div class="mt-3">
-                          <a v-if="event.isAvailable && event.link !== '#'" :href="event.link" target="_blank" class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full hover:bg-sky-200 transition-colors">
-                              <Icon v-if="event.link.includes('instagram.com')" name="mdi:instagram" class="w-4 h-4" />
-                              <Icon v-else name="mdi:ticket" class="w-4 h-4" />
-                              Lihat Event
-                          </a>
-                          <span v-else class="inline-flex items-center gap-1 text-xs font-medium bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full italic">
-                              Tiket belum tersedia
-                          </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="members" class="py-16 md:py-24 px-4 relative overflow-hidden">
       <div class="max-w-[1664px] mx-auto">
         
@@ -217,15 +112,12 @@
                   placeholder
                   v-if="false"
                 />
-                <!-- Menggunakan tag image standard / w-full h-auto untuk sesuai aslinya tanpa crop -->
-                <NuxtImg 
+                <!-- Menggunakan tag image standard untuk Google Drive proxy images -->
+                <img 
                   :src="member.image" 
                   :alt="member.name"
-                  width="640"
-                  height="853"
                   class="w-full h-auto block object-contain"
                   loading="lazy"
-                  placeholder
                 />
                 
                 <!-- Gradient overlay -->
@@ -393,6 +285,123 @@
       </div>
     </section>
 
+    <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
+    <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
+    <section id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
+      <div class="max-w-4xl mx-auto">
+        <div 
+          class="text-center mb-10"
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+        >
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Upcoming Events</h2>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-col items-center gap-4">
+          <div 
+            v-for="(event, index) in events"
+            :key="index"
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
+            class="w-full max-w-lg group block p-4 bg-white rounded-2xl border border-sky-100 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-200 transition-all duration-300"
+          >
+              <div class="flex gap-4 items-center">
+                  
+                  <div class="flex-none text-center bg-sky-50 rounded-2xl p-4 min-w-[80px] group-hover:bg-sky-100 transition-colors">
+                      <span class="block text-xs uppercase font-bold text-gray-500">{{ event.date.month }}</span>
+                      <span class="block text-3xl font-black text-sky-600">{{ event.date.day }}</span>
+                      <span class="block text-xs font-bold text-gray-500">{{ event.date.year }}</span>
+                  </div>
+
+                  <div class="flex-1 min-w-0 text-left">
+                      <h4 class="font-bold text-lg truncate group-hover:text-sky-600 transition-colors">
+                          {{ event.name }}
+                      </h4>
+                      <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
+                          <Icon name="heroicons:map-pin" class="w-4 h-4 text-sky-500 shrink-0" />
+                          <span class="truncate">{{ event.location }}</span>
+                      </p>
+                      <div class="mt-3">
+                          <a v-if="event.isAvailable && event.link !== '#'" :href="event.link" target="_blank" class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full hover:bg-sky-200 transition-colors">
+                              <Icon v-if="event.link.includes('instagram.com')" name="mdi:instagram" class="w-4 h-4" />
+                              <Icon v-else name="mdi:ticket" class="w-4 h-4" />
+                              Lihat Event
+                          </a>
+                          <span v-else class="inline-flex items-center gap-1 text-xs font-medium bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full italic">
+                              Coming Soon
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta" class="pt-20 pb-4 md:pt-16 md:pb-8 px-4 relative z-10 mt-24 md:mt-0">
+      <div 
+        class="max-w-4xl mx-auto"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+      >
+        <div class="text-center mb-10">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Cheki & Merch</h2>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center items-center">
+          
+          <!-- Order Cheki Card -->
+          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-pink-100 group">
+            <figure class="relative h-64 m-4 rounded-xl overflow-hidden">
+              <NuxtImg 
+                src="/images/cheki_example.webp" 
+                alt="Contoh Cheki" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </figure>
+            <div class="card-body items-center text-center pt-0 pb-8">
+              <h2 class="card-title text-2xl font-bold text-sky-700">Order Cheki</h2>
+              <p class="text-gray-500 text-sm mb-4">Dapatkan foto polaroid eksklusif bersama member favoritmu!</p>
+              <div class="card-actions">
+                <a :href="chekiFormLink" target="_blank" class="btn bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+                  <Icon name="mdi:cart-outline" class="w-5 h-5 mr-1" /> Pesan Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Merch Card -->
+          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-sky-100 group">
+            <figure class="relative h-64 m-4 rounded-xl overflow-hidden">
+              <NuxtImg 
+                src="/images/merch.webp" 
+                alt="Official Merch" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </figure>
+            <div class="card-body items-center text-center pt-0 pb-8">
+              <h2 class="card-title text-2xl font-bold text-sky-700">Official Merch</h2>
+              <p class="text-gray-500 text-sm mb-4">Koleksi merchandise resmi Lluvia untuk menemanimu!</p>
+              <div class="card-actions">
+                <a :href="merchFormLink" target="_blank" class="btn bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-500 hover:to-indigo-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+                  <Icon name="mdi:shopping-outline" class="w-5 h-5 mr-1" /> Lihat Katalog
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <section id="gallery" class="py-12 md:py-20 px-4 overflow-hidden">
       <div 
         class="max-w-6xl mx-auto"
@@ -461,23 +470,23 @@
         <div class="flex flex-col items-center justify-center gap-4">
         
           <!-- Tombol Ratecard -->
-          <a href="/dokumen_ratecard.pdf" target="_blank" rel="noopener noreferrer" class="btn border-none bg-gradient-to-r from-purple-500 to-indigo-500 text-white hover:from-indigo-600 hover:to-purple-600 shadow-lg hover:shadow-indigo-500/50 hover:scale-105 transition-all duration-300 rounded-full px-8 mb-2">
+          <a :href="contact.ratecard" target="_blank" rel="noopener noreferrer" class="btn border-none bg-gradient-to-r from-purple-500 to-indigo-500 text-white hover:from-indigo-600 hover:to-purple-600 shadow-lg hover:shadow-indigo-500/50 hover:scale-105 transition-all duration-300 rounded-full px-8 mb-2">
             <Icon name="mdi:file-document-outline" class="w-6 h-6 mr-1" />
             Ratecard
           </a>
 
           <div class="text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Icon name="mdi:phone" class="w-6 h-6 text-sky-600" />
-            <span class="text-sky-600">0851-5712-4199 (Rengga)</span>
+            <span class="text-sky-600">{{ contact.whatsapp }} ({{ contact.manager }})</span>
           </div>
           
           <div class="flex flex-wrap justify-center gap-4 mt-4">
-            <a href="https://wa.me/6285157124199" target="_blank" class="btn btn-outline border-sky-400 text-sky-600 hover:bg-sky-500 hover:text-white hover:border-sky-500 rounded-full px-6">
+            <a :href="'https://wa.me/' + contact.whatsapp.replace(/[^0-9]/g, '')" target="_blank" class="btn btn-outline border-sky-400 text-sky-600 hover:bg-sky-500 hover:text-white hover:border-sky-500 rounded-full px-6">
               <Icon name="mdi:whatsapp" class="w-6 h-6" />
               WhatsApp
             </a>
             
-            <a href="https://instagram.com/lluvia_project" target="_blank" class="btn btn-outline border-pink-400 text-pink-600 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white hover:border-transparent rounded-full px-6">
+            <a :href="contact.instagram" target="_blank" class="btn btn-outline border-pink-400 text-pink-600 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white hover:border-transparent rounded-full px-6">
               <Icon name="mdi:instagram" class="w-6 h-6" />
               Instagram
             </a>
@@ -496,7 +505,34 @@
 </template>
 
 <script setup>
-const events = [
+const config = useRuntimeConfig()
+const sheetId = config.public.googleSheetId
+
+// ============================================================
+// FALLBACK DATA (used when Google Sheets is not configured/available)
+// ============================================================
+const fallbackMembers = [
+  {
+    name: 'Mily',
+    image: '/images/profil_mily.webp',
+    catchphrase: 'siberuang yang akan terus berlarian dikepalamu, hola aku mily!',
+    instagram: 'https://www.instagram.com/milyy_chuu',
+  },
+  {
+    name: 'Dede',
+    image: '/images/profil_dede.webp',
+    catchphrase: 'Si kecil ceria, suka menarii, hai aku dede!',
+    instagram: 'https://www.instagram.com/k4ylidde',
+  },
+  {
+    name: 'Yora',
+    image: '/images/profil_yora.webp',
+    catchphrase: 'sang bintang penyuka diksi, hai i\'m Yora, siap membawa mu menuju bianglala!',
+    instagram: 'https://www.instagram.com/mellyora.a',
+  }
+]
+
+const fallbackEvents = [
   {
     name: '𝑺𝑶𝑼𝑻𝑯𝑩𝑶𝑹𝑵 𝑲𝑨𝑹𝑨𝑶𝑲𝑬',
     date: { day: '11', month: 'Apr', year: '2026' },
@@ -518,63 +554,94 @@ const events = [
     link: '#',
     isAvailable: false
   }
-];
-
-const members = [
-  {
-    name: 'Mily',
-    
-    image: '/images/profil_mily.webp',
-    catchphrase: 'siberuang yang akan terus berlarian dikepalamu, hola aku mily!',
-    instagram: 'https://www.instagram.com/milyy_chuu',
-  },
-  {
-    name: 'Dede',
-    
-    image: '/images/profil_dede.webp',
-    catchphrase: 'Si kecil ceria, suka menarii, hai aku dede!',
-    instagram: 'https://www.instagram.com/k4ylidde',
-  },
-  
-  {
-    name: 'Yora',
-
-    image: '/images/profil_yora.webp',
-    catchphrase: 'sang bintang penyuka diksi, hai i\'m Yora, siap membawa mu menuju bianglala!',
-    instagram: 'https://www.instagram.com/mellyora.a',
-    
-  }
 ]
 
-// GALLERY STATE & LOGIC
-const galleryImages = [
-  'https://picsum.photos/id/10/800/600',
-  'https://picsum.photos/id/11/800/600',
-  'https://picsum.photos/id/12/800/600',
-  'https://picsum.photos/id/13/800/600',
-  'https://picsum.photos/id/14/800/600',
-  'https://picsum.photos/id/15/800/600',
-  'https://picsum.photos/id/16/800/600',
-  'https://picsum.photos/id/17/800/600',
-  'https://picsum.photos/id/18/800/600',
-  'https://picsum.photos/id/19/800/600',
-  'https://picsum.photos/id/20/800/600',
-  'https://picsum.photos/id/21/800/600',
-  'https://picsum.photos/id/22/800/600',
-  'https://picsum.photos/id/23/800/600',
-  'https://picsum.photos/id/24/800/600',
-  'https://picsum.photos/id/25/800/600',
-  'https://picsum.photos/id/26/800/600',
-  'https://picsum.photos/id/27/800/600',
-  'https://picsum.photos/id/28/800/600',
-  'https://picsum.photos/id/29/800/600'
-];
+const fallbackGallery = [
+  '/images/gallery/1762347551689.webp',
+  '/images/gallery/IMG_0213.webp',
+  '/images/gallery/IMG_0253.webp',
+  '/images/gallery/IMG_0269.webp',
+  '/images/gallery/IMG_0271.webp',
+  '/images/gallery/IMG_0287.webp',
+  '/images/gallery/IMG_0297.webp',
+  '/images/gallery/IMG_8687.webp',
+  '/images/gallery/IMG_8703.webp',
+  '/images/gallery/IMG_8741.webp',
+  '/images/gallery/IMG_9398.webp',
+  '/images/gallery/IMG_9399.webp',
+  '/images/gallery/IMG_9404.webp',
+  '/images/gallery/IMG_9417.webp',
+  '/images/gallery/IMG_9420.webp',
+  '/images/gallery/IMG_9421.webp',
+  '/images/gallery/IMG_9425.webp',
+]
 
+const fallbackContact = {
+  manager: 'Rengga',
+  whatsapp: '0851-5712-4199',
+  instagram: 'https://instagram.com/lluvia_project',
+  ratecard: '/dokumen_ratecard.pdf',
+}
+
+// ============================================================
+// FETCH DATA FROM GOOGLE SHEETS
+// ============================================================
+const fetchSheet = (sheet) => {
+  if (!sheetId) return { data: ref(null) }
+  return useFetch('/api/sheets', {
+    query: { id: sheetId, sheet },
+    default: () => null,
+  })
+}
+
+const { data: membersData } = fetchSheet('members')
+const { data: eventsData } = fetchSheet('events')
+const { data: ctaData } = fetchSheet('cta')
+const { data: galleryData } = fetchSheet('gallery')
+const { data: contactData } = fetchSheet('contact')
+
+// ============================================================
+// COMPUTED DATA (with fallback)
+// ============================================================
+const members = computed(() => {
+  if (membersData.value?.data?.length) return membersData.value.data
+  return fallbackMembers
+})
+
+const events = computed(() => {
+  if (eventsData.value?.data?.length) return eventsData.value.data
+  return fallbackEvents
+})
+
+const galleryImages = computed(() => {
+  if (galleryData.value?.data?.length) return galleryData.value.data.map(g => g.image)
+  return fallbackGallery
+})
+
+const contact = computed(() => {
+  if (contactData.value?.data?.length) return contactData.value.data[0]
+  return fallbackContact
+})
+
+// CTA: get form links for cheki and merch
+const chekiFormLink = computed(() => {
+  const cta = ctaData.value?.data?.find(c => c.name === 'cheki')
+  return cta?.form || '#'
+})
+
+const merchFormLink = computed(() => {
+  const cta = ctaData.value?.data?.find(c => c.name === 'merch')
+  return cta?.form || '#'
+})
+
+// ============================================================
+// GALLERY STATE & LOGIC
+// ============================================================
 const currentGalleryIndex = ref(0);
 let galleryInterval = null;
 
 onMounted(() => {
-  currentGalleryIndex.value = Math.floor(Math.random() * galleryImages.length);
+  currentGalleryIndex.value = Math.floor(Math.random() * galleryImages.value.length);
   startInterval();
 });
 
@@ -585,23 +652,23 @@ onUnmounted(() => {
 const startInterval = () => {
   if (galleryInterval) clearInterval(galleryInterval);
   galleryInterval = setInterval(() => {
-    currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.length;
+    currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.value.length;
   }, 5000);
 };
 
 const nextImage = () => {
-  currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.length;
-  startInterval(); // Reset interval user interaction
+  currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.value.length;
+  startInterval();
 };
 
 const prevImage = () => {
-  currentGalleryIndex.value = (currentGalleryIndex.value - 1 + galleryImages.length) % galleryImages.length;
-  startInterval(); // Reset interval user interaction
+  currentGalleryIndex.value = (currentGalleryIndex.value - 1 + galleryImages.value.length) % galleryImages.value.length;
+  startInterval();
 };
 
 const goToImage = (index) => {
   currentGalleryIndex.value = index;
-  startInterval(); // Reset interval user interaction
+  startInterval();
 };
 </script>
 
