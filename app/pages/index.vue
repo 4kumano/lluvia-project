@@ -30,7 +30,10 @@
       </div>
     </nav>
 
-    <section id="home" class="relative w-full min-h-screen flex flex-col items-center justify-center pt-20 pb-16 md:pt-10 md:pb-32 overflow-hidden">
+    <!-- PANDUAN MENGUBAH JARAK ANTARA NAVBAR, HERO, DAN EVENTS: -->
+    <!-- Jarak Atas (Navbar ke Home): ubah class pt-8 (mobile), md:pt-16 (tablet/layar menengah), lg:pt-10 (desktop). Semakin besar angkanya semakin jauh jaraknya ke bawah navbar. -->
+    <!-- Jarak Bawah (Home ke batas terbawahnya sebelum events): ubah class pb-36 (mobile), sm:pb-48 (mobile besar), md:pb-40 (tablet), lg:pb-32 (desktop). Karena efek logo yang keluar jalur (absolute -bottom), padding bottom home section dibuat sangat besar khusus di masing-masing ukuran bayangan layar. -->
+    <section id="home" class="relative w-full lg:min-h-screen flex flex-col items-center justify-center pt-8 pb-36 sm:pb-48 md:pt-16 md:pb-40 lg:pt-10 lg:pb-32 overflow-hidden">
       <div class="relative w-full max-w-6xl mx-auto px-4">
         
         <div 
@@ -72,7 +75,10 @@
       </div>
     </section>
 
-    <section id="events" class="py-12 md:py-20 px-4">
+    <!-- PANDUAN MENGUBAH JARAK SECTION EVENTS (Jarak Home dengan Events): -->
+    <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
+    <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
+    <section id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
       <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
         <h2 class="text-3xl font-bold text-sky-700">Upcoming Events (To Be Added)</h2>
       </div>
