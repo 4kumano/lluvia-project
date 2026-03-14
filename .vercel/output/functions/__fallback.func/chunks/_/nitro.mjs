@@ -4265,7 +4265,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "89ab1e8c-8a31-47eb-a04c-1e1152f14bcf",
+    "buildId": "ea4794cb-b61a-4d02-acf6-083a33f22fba",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4795,10 +4795,11 @@ function publicAssetsURL(...path) {
 }
 
 const collections = {
+  'mdi': () => import('./icons.mjs').then(m => m.default),
 };
 
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _Uv4ZLN = defineCachedEventHandler(async (event) => {
+const _TLiStd = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError$1({ status: 400, message: "Invalid icon request" });
@@ -4848,13 +4849,13 @@ const _Uv4ZLN = defineCachedEventHandler(async (event) => {
   // 1 week
 });
 
-const _lazy_k4lJUa = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
+const _lazy_y9BpcM = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_k4lJUa, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_y9BpcM, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _Uv4ZLN, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_k4lJUa, lazy: true, middleware: false, method: undefined }
+  { route: '/api/_nuxt_icon/:collection', handler: _TLiStd, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_y9BpcM, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
