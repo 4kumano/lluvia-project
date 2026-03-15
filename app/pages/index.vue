@@ -4,7 +4,7 @@
     <nav class="navbar bg-white/70 backdrop-blur-md sticky top-0 z-50 shadow-sm px-4 lg:px-12">
       <div class="flex-1">
         <a href="#home" class="btn btn-ghost normal-case px-2">
-          <NuxtImg src="/images/lluvia_NO_BG.webp" alt="Lluvia Logo" class="h-10 md:h-12 w-auto object-contain" />
+          <NuxtImg src="/images/lluvia_NO_BG.webp" alt="Lluvia Logo" width="100" height="40" class="h-10 md:h-12 w-auto object-contain" />
         </a>
       </div>
       <div class="flex-none hidden md:block">
@@ -33,7 +33,7 @@
     <!-- PANDUAN MENGUBAH JARAK ANTARA NAVBAR, HERO, DAN EVENTS: -->
     <!-- Jarak Atas (Navbar ke Home): ubah class pt-8 (mobile), md:pt-16 (tablet/layar menengah), lg:pt-10 (desktop). Semakin besar angkanya semakin jauh jaraknya ke bawah navbar. -->
     <!-- Jarak Bawah (Home ke batas terbawahnya sebelum events): ubah class pb-36 (mobile), sm:pb-48 (mobile besar), md:pb-40 (tablet), lg:pb-32 (desktop). Karena efek logo yang keluar jalur (absolute -bottom), padding bottom home section dibuat sangat besar khusus di masing-masing ukuran bayangan layar. -->
-    <section id="home" class="relative w-full lg:min-h-screen flex flex-col items-center justify-center pt-8 pb-36 sm:pb-48 md:pt-16 md:pb-40 lg:pt-10 lg:pb-32 overflow-hidden">
+    <section id="home" class="relative w-full lg:min-h-screen flex flex-col items-center justify-center pt-32 pb-44 sm:pb-48 md:pt-16 md:pb-40 lg:pt-10 lg:pb-32 overflow-hidden">
       <div class="relative w-full max-w-6xl mx-auto px-4">
         
         <div 
@@ -69,8 +69,58 @@
           <NuxtImg 
             src="/images/lluvia_NO_BG.webp" 
             alt="Lluvia" 
+            width="512"
+            height="512"
             class="w-[230px] sm:w-[288px] md:w-96 lg:w-[32rem] drop-shadow-[0_10px_10px_rgba(0,0,0,0.4)] object-contain"
           />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta" class="pt-20 pb-4 md:pt-16 md:pb-8 px-4 relative z-10 mt-24 md:mt-0">
+      <div 
+        class="max-w-4xl mx-auto"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+      >
+        <div class="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center items-center">
+          
+          <!-- Order Cheki Card -->
+          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-pink-100 group">
+            <figure class="px-6 pt-6 relative h-56 bg-gradient-to-br from-pink-50 to-pink-100 m-4 rounded-xl flex flex-col justify-center items-center overflow-hidden">
+              <Icon name="mdi:camera-party-mode" class="w-20 h-20 text-pink-300 group-hover:scale-110 transition-transform duration-300" />
+              <span class="mt-2 text-pink-400 font-semibold italic text-sm">Contoh Gambar Cheki</span>
+            </figure>
+            <div class="card-body items-center text-center pt-0 pb-8">
+              <h2 class="card-title text-2xl font-bold text-sky-700">Order Cheki</h2>
+              <p class="text-gray-500 text-sm mb-4">Dapatkan foto polaroid eksklusif bersama member favoritmu!</p>
+              <div class="card-actions">
+                <a href="#" target="_blank" class="btn bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+                  <Icon name="mdi:cart-outline" class="w-5 h-5 mr-1" /> Pesan Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Merch Card -->
+          <div class="card bg-white w-full max-w-[320px] shadow-xl hover:shadow-sky-300/50 transition-all duration-300 border-2 border-sky-100 group">
+            <figure class="px-6 pt-6 relative h-56 bg-gradient-to-bl from-sky-50 to-sky-100 m-4 rounded-xl flex flex-col justify-center items-center overflow-hidden">
+              <Icon name="mdi:tshirt-crew" class="w-20 h-20 text-sky-300 group-hover:scale-110 transition-transform duration-300" />
+              <span class="mt-2 text-sky-400 font-semibold italic text-sm">Contoh Gambar Merch</span>
+            </figure>
+            <div class="card-body items-center text-center pt-0 pb-8">
+              <h2 class="card-title text-2xl font-bold text-sky-700">Official Merch</h2>
+              <p class="text-gray-500 text-sm mb-4">Koleksi merchandise resmi Lluvia untuk menemanimu!</p>
+              <div class="card-actions">
+                <a href="#" target="_blank" class="btn bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-500 hover:to-indigo-600 text-white border-none rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+                  <Icon name="mdi:shopping-outline" class="w-5 h-5 mr-1" /> Lihat Katalog
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -79,8 +129,56 @@
     <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
     <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
     <section id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
-      <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
-        <h2 class="text-3xl font-bold text-sky-700">Upcoming Events (To Be Added)</h2>
+      <div class="max-w-4xl mx-auto">
+        <div 
+          class="text-center mb-10"
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+        >
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Upcoming Events</h2>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-col items-center gap-4">
+          <div 
+            v-for="(event, index) in events"
+            :key="index"
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
+            class="w-full max-w-lg group block p-4 bg-white rounded-2xl border border-sky-100 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-200 transition-all duration-300"
+          >
+              <div class="flex gap-4 items-center">
+                  
+                  <div class="flex-none text-center bg-sky-50 rounded-2xl p-4 min-w-[80px] group-hover:bg-sky-100 transition-colors">
+                      <span class="block text-xs uppercase font-bold text-gray-500">{{ event.date.month }}</span>
+                      <span class="block text-3xl font-black text-sky-600">{{ event.date.day }}</span>
+                      <span class="block text-xs font-bold text-gray-500">{{ event.date.year }}</span>
+                  </div>
+
+                  <div class="flex-1 min-w-0 text-left">
+                      <h4 class="font-bold text-lg truncate group-hover:text-sky-600 transition-colors">
+                          {{ event.name }}
+                      </h4>
+                      <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
+                          <Icon name="heroicons:map-pin" class="w-4 h-4 text-sky-500 shrink-0" />
+                          <span class="truncate">{{ event.location }}</span>
+                      </p>
+                      <div class="mt-3">
+                          <a v-if="event.isAvailable && event.link !== '#'" :href="event.link" target="_blank" class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full hover:bg-sky-200 transition-colors">
+                              <Icon v-if="event.link.includes('instagram.com')" name="mdi:instagram" class="w-4 h-4" />
+                              <Icon v-else name="mdi:ticket" class="w-4 h-4" />
+                              Lihat Event
+                          </a>
+                          <span v-else class="inline-flex items-center gap-1 text-xs font-medium bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full italic">
+                              Tiket belum tersedia
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -123,6 +221,8 @@
                 <NuxtImg 
                   :src="member.image" 
                   :alt="member.name"
+                  width="640"
+                  height="853"
                   class="w-full h-auto block object-contain"
                   loading="lazy"
                   placeholder
@@ -199,32 +299,80 @@
               <input type="checkbox" name="my-accordion-2" /> 
               <div class="collapse-title text-xl font-bold text-sky-800">
                 <Icon name="mdi:music-note" class="w-6 h-6 mr-2 inline-block text-pink-500" />
-                Lirik Lagu: Judul Lagu Pertama
+                Lirik Lagu: Lluvia - Bersama Hujan
               </div>
               <div class="collapse-content text-gray-700"> 
                 <div class="p-4 bg-white rounded-xl shadow-inner text-center md:text-left leading-relaxed">
-                  [Verse 1]<br>
-                  Kita berjalan di bawah hujan<br>
-                  Bersama berbagi satu payung berdua<br>
-                  Tetesan air menyapa senyuman<br>
-                  Menghapus segala duka lara<br><br>
+                  Ceria dan bahagia<br>
+                  Bersama turunnya hujan<br><br>
 
-                  [Chorus]<br>
-                  Lluvia... pancarkan cahayamu<br>
-                  Di tengah badai kita tetap melangkah maju<br>
-                  Lluvia... biarkan rintik ini<br>
-                  Menjadi saksi perjuangan tanpa henti<br><br>
+                  ‘Ku termangu di bawah sang kelabu<br>
+                  Menanti turunnya hujan yang pilu<br>
+                  Gelisah di dalam benakku<br>
+                  Dan hujan yang menderu<br>
+                  Diterpa angin yang sendu<br><br>
 
-                  [Outro]<br>
-                  Terus bersinar...<br>
-                  Terus bersinar...
+                  Namun bayangmu kini<br>
+                  Telah dapat ‘ku lihat lagi<br>
+                  Hujan telah bawamu kembali<br>
+                  Sadarkan dengan pasti<br>
+                  Bahwa aku pemilik hati<br>
+                  Dan kini~<br><br>
+
+                  Ceria dan bahagia<br>
+                  Senyumku berbinar lagi<br>
+                  Kau t’lah hapuskan duka<br>
+                  Kar’na hadirmu lagi<br><br>
+
+                  Cobalah kau dengarkan<br>
+                  Hujan yang enggan berhenti<br>
+                  S’perti ingin menahan<br>
+                  Agar kau tetap di sini<br><br>
+
+                  Bersama hujan<br>
+                  Yang t’lah turun dengan syahdu<br>
+                  Satukan<br>
+                  Dirimu dan diriku<br><br>
+
+                  LET THE RAIN CONNECT US!!<br><br>
+
+                  Jangan biarkan rintik hujan ‘kan menjadi derai<br>
+                  Yang bawa luka lama di hariku tanpamu<br>
+                  Biarlah ku nikmati rasa ini<br>
+                  Rasa bahagia saat ‘ku bersamamu<br>
+                  Kar’na kini..<br><br>
+
+                  Dan kini ‘ku bahagia<br>
+                  Kau t’lah hadir di sisiku<br>
+                  Wajahku pun merona<br>
+                  Saat kau tatap mataku<br><br>
+
+                  Ceria dan bahagia<br>
+                  Senyumku berbinar lagi<br>
+                  Kau t’lah hapuskan duka<br>
+                  Kar’na hadirmu lagi<br><br>
+
+                  Cobalah kau dengarkan<br>
+                  Hujan yang enggan berhenti<br>
+                  S’perti ingin menahan<br>
+                  Agar kau tetap di sini<br><br>
+
+                  Bersama hujan<br>
+                  Yang t’lah turun dengan syahdu<br>
+                  Satukan<br>
+                  Dirimu dan diriku<br><br>
+
+                  Lalalala<br>
+                  Lalalala<br>
+                  Hujan satukan kita bersama<br>
+                  Lalalala<br>
+                  Lalalala
                 </div>
               </div>
             </div>
 
             <!-- Contoh lagu kedua jika ada -->
-            
-            <div class="collapse collapse-arrow bg-sky-50 rounded-2xl border border-sky-100 mt-4">
+            <!-- <div class="collapse collapse-arrow bg-sky-50 rounded-2xl border border-sky-100 mt-4">
               <input type="checkbox" name="my-accordion-2" /> 
               <div class="collapse-title text-xl font-bold text-sky-800">
                 <Icon name="mdi:music-note" class="w-6 h-6 mr-2 inline-block text-pink-500" />
@@ -237,7 +385,7 @@
                   Gunakan &lt;br&gt;&lt;br&gt; untuk memberikan jarak 1 baris kosong (paragraf).
                 </div>
               </div>
-            </div> 
+            </div>  -->
            
           </div>
 
@@ -245,14 +393,66 @@
       </div>
     </section>
 
-    <section id="gallery" class="py-12 md:py-20 px-4">
-      <div class="max-w-4xl mx-auto text-center border-2 border-dashed border-sky-300 p-10 rounded-xl bg-white/50">
-        <h2 class="text-3xl font-bold text-sky-700">Gallery (To Be Added)</h2>
+    <section id="gallery" class="py-12 md:py-20 px-4 overflow-hidden">
+      <div 
+        class="max-w-6xl mx-auto"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+      >
+        <div class="text-center mb-10 md:mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Gallery</h2>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] group flex justify-center items-center">
+          <!-- Slide Images -->
+          <div 
+            v-for="(image, index) in galleryImages" 
+            :key="image"
+            class="absolute top-0 h-full transition-all duration-700 ease-out rounded-xl md:rounded-3xl shadow-2xl overflow-hidden"
+            :class="[
+              index === currentGalleryIndex ? 'left-1/2 -translate-x-1/2 w-[70%] sm:w-[60%] md:w-[55%] z-20 opacity-100 scale-100 border-4 border-white' : 
+              index === (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length ? 'left-[15%] sm:left-[20%] md:left-[25%] -translate-x-1/2 w-[70%] sm:w-[60%] md:w-[55%] z-10 opacity-50 scale-90 cursor-pointer hover:opacity-75 border-4 border-white/50' :
+              index === (currentGalleryIndex + 1) % galleryImages.length ? 'left-[85%] sm:left-[80%] md:left-[75%] -translate-x-1/2 w-[70%] sm:w-[60%] md:w-[55%] z-10 opacity-50 scale-90 cursor-pointer hover:opacity-75 border-4 border-white/50' :
+              'left-1/2 -translate-x-1/2 w-[70%] sm:w-[60%] md:w-[55%] z-0 opacity-0 scale-75 pointer-events-none'
+            ]"
+            @click="goToImage(index)"
+          >
+            <img :src="image" alt="Gallery Image" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+
+          <!-- Navigation Controls -->
+          <div class="absolute inset-0 flex items-center justify-between p-2 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
+            <button @click="prevImage" class="btn btn-circle btn-sm md:btn-md lg:btn-lg bg-white/70 hover:bg-white border-none text-sky-800 shadow-xl backdrop-blur-sm pointer-events-auto hover:scale-110 transition-transform">
+              <Icon name="heroicons:chevron-left-solid" class="w-5 h-5 md:w-8 md:h-8" />
+            </button>
+            <button @click="nextImage" class="btn btn-circle btn-sm md:btn-md lg:btn-lg bg-white/70 hover:bg-white border-none text-sky-800 shadow-xl backdrop-blur-sm pointer-events-auto hover:scale-110 transition-transform">
+              <Icon name="heroicons:chevron-right-solid" class="w-5 h-5 md:w-8 md:h-8" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicators -->
+        <div class="mt-8 md:mt-12 flex justify-center gap-2 px-4 flex-wrap max-w-3xl mx-auto">
+          <button 
+            v-for="(_, index) in galleryImages" 
+            :key="index"
+            @click="goToImage(index)"
+            class="h-2.5 rounded-full transition-all duration-300"
+            :class="currentGalleryIndex === index ? 'w-8 bg-sky-600 shadow-md' : 'w-2.5 bg-sky-200 hover:bg-sky-400'"
+          ></button>
+        </div>
       </div>
     </section>
 
     <section id="contact" class="py-12 md:py-20 px-4 bg-white/60 mt-4 md:mt-10">
-      <div class="max-w-3xl mx-auto text-center">
+      <div 
+        class="max-w-3xl mx-auto text-center"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+      >
         <h2 class="text-4xl font-bold text-sky-700 mb-6">Contact & Inquiries</h2>
         <p class="text-lg text-gray-600 mb-8">
           Untuk penawaran kerja sama, jadwal manggung, atau pertanyaan lainnya, silakan hubungi manajemen kami.
@@ -268,11 +468,11 @@
 
           <div class="text-xl font-semibold text-gray-800 flex items-center gap-2">
             <Icon name="mdi:phone" class="w-6 h-6 text-sky-600" />
-            <span class="text-sky-600">0812-xxx-xxx</span>
+            <span class="text-sky-600">0851-5712-4199 (Rengga)</span>
           </div>
           
           <div class="flex flex-wrap justify-center gap-4 mt-4">
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline border-sky-400 text-sky-600 hover:bg-sky-500 hover:text-white hover:border-sky-500 rounded-full px-6">
+            <a href="https://wa.me/6285157124199" target="_blank" class="btn btn-outline border-sky-400 text-sky-600 hover:bg-sky-500 hover:text-white hover:border-sky-500 rounded-full px-6">
               <Icon name="mdi:whatsapp" class="w-6 h-6" />
               WhatsApp
             </a>
@@ -287,35 +487,122 @@
       </div>
     </section>
 
+    <!-- Footer Copyright -->
+    <footer class="py-6 text-center text-sm font-medium text-sky-700/80 bg-white/30 border-t border-sky-100/50">
+      <p>&copy; {{ new Date().getFullYear() }} Lluvia Project. Developed by <a href="https://akumano.my.id/" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-sky-600 hover:underline transition-colors">Akumano</a>. All Rights Reserved.</p>
+    </footer>
+
   </div>
 </template>
 
 <script setup>
+const events = [
+  {
+    name: '𝑺𝑶𝑼𝑻𝑯𝑩𝑶𝑹𝑵 𝑲𝑨𝑹𝑨𝑶𝑲𝑬',
+    date: { day: '11', month: 'Apr', year: '2026' },
+    location: 'Coming Soon',
+    link: 'https://www.instagram.com/p/DUp5UF_CbNG/',
+    isAvailable: true
+  },
+  {
+    name: 'IMAGI 3',
+    date: { day: '20', month: 'Jun', year: '2026' },
+    location: 'KOTA BANJARBARU',
+    link: 'https://mytix.id/event/detail/imagi-3',
+    isAvailable: true
+  },
+  {
+    name: 'YUME NO MATSURI',
+    date: { day: '15', month: 'Aug', year: '2026' },
+    location: 'BANJARMASIN',
+    link: '#',
+    isAvailable: false
+  }
+];
+
 const members = [
   {
     name: 'Mily',
     
     image: '/images/profil_mily.webp',
-    catchphrase: 'Suaraku adalah pelukan hangat untukmu.',
-    instagram: '#',
+    catchphrase: 'siberuang yang akan terus berlarian dikepalamu, hola aku mily!',
+    instagram: 'https://www.instagram.com/milyy_chuu',
   },
   {
     name: 'Dede',
     
     image: '/images/profil_dede.webp',
-    catchphrase: 'Visual yang siap mencuri hatimu dalam sekejap.',
-    instagram: '#',
+    catchphrase: 'Si kecil ceria, suka menarii, hai aku dede!',
+    instagram: 'https://www.instagram.com/k4ylidde',
   },
   
   {
     name: 'Yora',
 
     image: '/images/profil_yora.webp',
-    catchphrase: 'Si bungsu yang selalu butuh dukungan dari kakak-kakak!',
-    instagram: '#',
+    catchphrase: 'sang bintang penyuka diksi, hai i\'m Yora, siap membawa mu menuju bianglala!',
+    instagram: 'https://www.instagram.com/mellyora.a',
     
   }
 ]
+
+// GALLERY STATE & LOGIC
+const galleryImages = [
+  'https://picsum.photos/id/10/800/600',
+  'https://picsum.photos/id/11/800/600',
+  'https://picsum.photos/id/12/800/600',
+  'https://picsum.photos/id/13/800/600',
+  'https://picsum.photos/id/14/800/600',
+  'https://picsum.photos/id/15/800/600',
+  'https://picsum.photos/id/16/800/600',
+  'https://picsum.photos/id/17/800/600',
+  'https://picsum.photos/id/18/800/600',
+  'https://picsum.photos/id/19/800/600',
+  'https://picsum.photos/id/20/800/600',
+  'https://picsum.photos/id/21/800/600',
+  'https://picsum.photos/id/22/800/600',
+  'https://picsum.photos/id/23/800/600',
+  'https://picsum.photos/id/24/800/600',
+  'https://picsum.photos/id/25/800/600',
+  'https://picsum.photos/id/26/800/600',
+  'https://picsum.photos/id/27/800/600',
+  'https://picsum.photos/id/28/800/600',
+  'https://picsum.photos/id/29/800/600'
+];
+
+const currentGalleryIndex = ref(0);
+let galleryInterval = null;
+
+onMounted(() => {
+  currentGalleryIndex.value = Math.floor(Math.random() * galleryImages.length);
+  startInterval();
+});
+
+onUnmounted(() => {
+  if (galleryInterval) clearInterval(galleryInterval);
+});
+
+const startInterval = () => {
+  if (galleryInterval) clearInterval(galleryInterval);
+  galleryInterval = setInterval(() => {
+    currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.length;
+  }, 5000);
+};
+
+const nextImage = () => {
+  currentGalleryIndex.value = (currentGalleryIndex.value + 1) % galleryImages.length;
+  startInterval(); // Reset interval user interaction
+};
+
+const prevImage = () => {
+  currentGalleryIndex.value = (currentGalleryIndex.value - 1 + galleryImages.length) % galleryImages.length;
+  startInterval(); // Reset interval user interaction
+};
+
+const goToImage = (index) => {
+  currentGalleryIndex.value = index;
+  startInterval(); // Reset interval user interaction
+};
 </script>
 
 <style>
@@ -324,4 +611,12 @@ html {
   scroll-behavior: smooth;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
