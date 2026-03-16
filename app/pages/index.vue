@@ -287,7 +287,7 @@
 
     <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
     <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
-    <section id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
+    <section v-if="events && events.length > 0" id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
       <div class="max-w-4xl mx-auto">
         <div 
           class="text-center mb-10"
@@ -533,27 +533,7 @@ const fallbackMembers = [
 ]
 
 const fallbackEvents = [
-  {
-    name: '𝑺𝑶𝑼𝑻𝑯𝑩𝑶𝑹𝑵 𝑲𝑨𝑹𝑨𝑶𝑲𝑬',
-    date: { day: '11', month: 'Apr', year: '2026' },
-    location: 'Coming Soon',
-    link: 'https://www.instagram.com/p/DUp5UF_CbNG/',
-    isAvailable: true
-  },
-  {
-    name: 'IMAGI 3',
-    date: { day: '20', month: 'Jun', year: '2026' },
-    location: 'KOTA BANJARBARU',
-    link: 'https://mytix.id/event/detail/imagi-3',
-    isAvailable: true
-  },
-  {
-    name: 'YUME NO MATSURI',
-    date: { day: '15', month: 'Aug', year: '2026' },
-    location: 'BANJARMASIN',
-    link: '#',
-    isAvailable: false
-  }
+
 ]
 
 const fallbackGallery = [
@@ -609,8 +589,23 @@ const members = computed(() => {
 })
 
 const events = computed(() => {
-  if (eventsData.value?.data?.length) return eventsData.value.data
-  return fallbackEvents
+  let sourceEvents = fallbackEvents
+  if (eventsData.value?.data?.length) {
+    sourceEvents = eventsData.value.data
+  }
+
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  return sourceEvents.filter(event => {
+    if (!event.date || !event.date.day || !event.date.month || !event.date.year) return true
+    
+    const eventDate = new Date(`${event.date.month} ${event.date.day}, ${event.date.year}`)
+    
+    if (isNaN(eventDate.getTime())) return true // Fallback jika invalid format
+    
+    return eventDate >= today
+  })
 })
 
 const galleryImages = computed(() => {
