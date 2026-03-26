@@ -42,14 +42,11 @@
           :enter="{ opacity: 1, y: 0, transition: { duration: 1000 } }"
           class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
         >
-          <NuxtImg 
-            src="/images/dashboard.webp" 
+          <img 
+            :src="dashboardImage" 
             alt="Lluvia All Members" 
             width="1920"
             height="1080"
-            sizes="sm:100vw md:80vw lg:1920px"
-            preload
-            fetchpriority="high"
             class="w-full h-auto object-cover"
           />
         </div>
@@ -66,8 +63,8 @@
           <!-- Ukuran Mobile: saat ini w-[230px] (dikurangi 10% dari sebelumnya). -->
           <!-- Ukuran Tablet: saat ini sm:w-[288px] (dikurangi 10% dari sebelumnya). -->
           <!-- Ukuran Desktop: saat ini md:w-96 dan lg:w-[32rem] -->
-          <NuxtImg 
-            src="/images/lluvia_NO_BG.webp" 
+          <img 
+            :src="logoImage" 
             alt="Lluvia" 
             width="512"
             height="512"
@@ -285,6 +282,8 @@
       </div>
     </section>
 
+
+
     <!-- Jarak Atas (Home ke Events): ubah class pt-8 (mobile), md:pt-12 (tablet/desktop). -->
     <!-- Jarak Bawah (Events ke Members): ubah class pb-12 (mobile), md:pb-20 (tablet/desktop). -->
     <section v-if="events && events.length > 0" id="events" class="pt-8 pb-12 md:pt-12 md:pb-20 px-4">
@@ -341,6 +340,41 @@
       </div>
     </section>
 
+        <!-- NEW SECTION: LIVE PERFORMANCES (YOUTUBE EMBEDS) -->
+    <section id="yt_embed" v-if="ytVideos && ytVideos.length > 0" class="py-12 md:py-20 px-4 bg-white">
+      <div class="max-w-6xl mx-auto text-center">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+          class="mb-10"
+        >
+          <h2 class="text-4xl md:text-5xl font-extrabold text-sky-700 tracking-wide uppercase">Live Performances</h2>
+          <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+          <div 
+            v-for="(video, index) in ytVideos" 
+            :key="index"
+            class="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md overflow-hidden shadow-lg border border-sky-100 hover:shadow-xl transition-shadow rounded-2xl"
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
+          >
+            <iframe 
+              v-if="video.embed_url"
+              :src="video.embed_url" 
+              class="w-full aspect-video"
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- CTA SECTION -->
     <section id="cta" class="pt-20 pb-4 md:pt-16 md:pb-8 px-4 relative z-10 mt-24 md:mt-0">
       <div 
@@ -579,10 +613,27 @@ const { data: eventsData } = fetchSheet('events')
 const { data: ctaData } = fetchSheet('cta')
 const { data: galleryData } = fetchSheet('gallery')
 const { data: contactData } = fetchSheet('contact')
+const { data: homeData } = fetchSheet('home')
+const { data: ytSheetData } = fetchSheet('yt')
 
 // ============================================================
 // COMPUTED DATA (with fallback)
 // ============================================================
+const dashboardImage = computed(() => {
+  const found = homeData.value?.data?.find(h => h.name === 'dashboard')
+  return found?.image || '/images/dashboard.webp'
+})
+
+const logoImage = computed(() => {
+  const found = homeData.value?.data?.find(h => h.name === 'logo')
+  return found?.image || '/images/lluvia_NO_BG.webp'
+})
+
+const ytVideos = computed(() => {
+  if (ytSheetData.value?.data?.length) return ytSheetData.value.data
+  return []
+})
+
 const members = computed(() => {
   if (membersData.value?.data?.length) return membersData.value.data
   return fallbackMembers

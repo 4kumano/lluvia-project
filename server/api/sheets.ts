@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Missing sheet name' })
   }
 
-  const allowedSheets = ['members', 'events', 'cta', 'gallery', 'contact']
+  const allowedSheets = ['members', 'events', 'cta', 'gallery', 'contact', 'home', 'yt']
   if (!allowedSheets.includes(sheet)) {
     throw createError({ statusCode: 400, message: `Invalid sheet: ${sheet}` })
   }
@@ -148,6 +148,21 @@ function transformRow(row: Record<string, any>, sheet: string): Record<string, a
         whatsapp: row.whatsapp || '',
         instagram: row.instagram || '',
         ratecard: row.ratecard || '#',
+      }
+
+    case 'home':
+      return {
+        name: row.name?.toLowerCase().trim() || '',
+        image: driveUrlToDirectImage(row.images || row.image || ''),
+      }
+
+    case 'yt':
+      const ytUrl = row.link_yt || row['link yt'] || ''
+      const match = ytUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/)
+      const ytId = match ? match[1] : ''
+      return {
+        link_yt: ytUrl,
+        embed_url: ytId ? `https://www.youtube.com/embed/${ytId}` : ''
       }
 
     default:
