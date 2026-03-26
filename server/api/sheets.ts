@@ -119,6 +119,7 @@ function transformRow(row: Record<string, any>, sheet: string): Record<string, a
         catchphrase: row.catchphrase || '',
         instagram: row.instagram || '',
         image: driveUrlToDirectImage(row.images || ''),
+        biodata: row.biodata || '',
       }
 
     case 'events':

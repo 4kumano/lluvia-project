@@ -42,11 +42,13 @@
           :enter="{ opacity: 1, y: 0, transition: { duration: 1000 } }"
           class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
         >
-          <img 
+          <NuxtImg 
             :src="dashboardImage" 
             alt="Lluvia All Members" 
             width="1920"
             height="1080"
+            sizes="sm:100vw md:80vw lg:1920px"
+            loading="lazy"
             class="w-full h-auto object-cover"
           />
         </div>
@@ -63,11 +65,12 @@
           <!-- Ukuran Mobile: saat ini w-[230px] (dikurangi 10% dari sebelumnya). -->
           <!-- Ukuran Tablet: saat ini sm:w-[288px] (dikurangi 10% dari sebelumnya). -->
           <!-- Ukuran Desktop: saat ini md:w-96 dan lg:w-[32rem] -->
-          <img 
+          <NuxtImg 
             :src="logoImage" 
             alt="Lluvia" 
             width="512"
             height="512"
+            loading="lazy"
             class="w-[230px] sm:w-[288px] md:w-96 lg:w-[32rem] drop-shadow-[0_10px_10px_rgba(0,0,0,0.4)] object-contain"
           />
         </div>
@@ -88,53 +91,114 @@
           <div class="w-24 h-1 bg-sky-300 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div class="flex flex-wrap justify-center items-stretch gap-8 md:gap-12 px-2">
+        <!-- Accordion Flex Container -->
+        <div class="flex flex-col md:flex-row md:h-[500px] xl:h-[550px] w-full max-w-[1400px] mx-auto gap-4 px-2">
+          
           <div 
             v-for="(member, index) in members"
             :key="index"
             v-motion
-            :initial="{ opacity: 0, x: 100 }"
-            :visible-once="{ opacity: 1, x: 0, transition: { duration: 800, delay: index * 200 } }"
-            class="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] max-w-sm"
+            :initial="{ opacity: 0, x: 50 }"
+            :visible-once="{ opacity: 1, x: 0, transition: { duration: 800, delay: index * 100 } }"
+            class="transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col md:flex-row group shrink-0"
+            :class="[
+              selectedMemberIndex === null 
+                ? 'w-full md:flex-1 aspect-[9/16] md:aspect-auto md:h-full' 
+                : selectedMemberIndex === index 
+                  ? 'w-full md:w-[680px] lg:w-[800px] xl:w-[930px] h-auto md:h-full shrink-0' 
+                  : 'w-full md:flex-1 md:min-w-[45px] lg:min-w-[60px] h-[90px] md:h-full shrink-0 md:shrink'
+            ]"
           >
-            <div class="card bg-white shadow-xl rounded-2xl overflow-hidden hover:shadow-sky-300/50 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group border-0 h-full">
+            <!-- Member Card Image -->
+            <div 
+              class="relative bg-white shadow-xl rounded-2xl overflow-hidden cursor-pointer shrink-0 md:shrink transition-all duration-700 w-full md:w-auto md:flex-1"
+              :class="[
+                selectedMemberIndex === null
+                  ? 'aspect-[9/16] md:aspect-auto md:h-full'
+                  : selectedMemberIndex === index 
+                    ? 'aspect-[9/16] md:aspect-auto md:h-full md:rounded-r-none shadow-2xl z-20' 
+                    : 'h-[90px] md:h-full'
+              ]"
+              @click="selectedMemberIndex !== index ? toggleMemberBio(index) : null"
+            >
+              <img 
+                :src="member.image" 
+                :alt="member.name"
+                class="absolute inset-0 w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+              <!-- Dark Overlay Gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-sky-900/90 via-sky-900/20 to-transparent"></div>
               
-              <figure class="relative w-full h-full flex items-end">
-                <!-- Gambar disesuaikan dengan proporsi tinggi aslinya -->
-                <NuxtImg 
-                  :src="member.image" 
-                  :alt="member.name"
-                  class="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                  placeholder
-                  v-if="false"
-                />
-                <!-- Menggunakan tag image standard untuk Google Drive proxy images -->
-                <img 
-                  :src="member.image" 
-                  :alt="member.name"
-                  class="w-full h-auto block object-contain"
-                  loading="lazy"
-                />
+              <!-- Text Overlay: Selected State -->
+              <div 
+                class="absolute bottom-0 left-0 w-full p-5 lg:p-6 xl:p-8 flex flex-col items-start justify-end transition-opacity duration-500"
+                :class="selectedMemberIndex === index ? 'opacity-100 delay-300' : 'opacity-0 pointer-events-none'"
+              >
+                <h3 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">{{ member.name }}</h3>
+              </div>
+
+              <!-- Text Overlay: Unselected State & All Unselected on Desktop -->
+              <div 
+                class="absolute inset-0 flex flex-col items-center transition-opacity duration-500 pointer-events-none"
+                :class="selectedMemberIndex !== index ? 'opacity-100' : 'opacity-0'"
+              >
+              
+                <!-- Desktop: Horizontal Text -->
+                <div class="hidden md:flex h-full items-end justify-center w-full px-1 pb-6 md:pb-8">
+                  <h2 
+                    class="text-xs lg:text-sm xl:text-xl font-extrabold text-gray-100 tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-500 text-center truncate w-full"
+                  >
+                    {{ member.name }}
+                  </h2>
+                </div>
                 
-                <!-- Gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-sky-900/90 via-sky-900/20 to-transparent"></div>
+                <!-- Mobile: Horizontal Centered Text -->
+                <div class="md:hidden flex h-full items-center justify-center">
+                  <h3 
+                    class="text-3xl sm:text-4xl font-extrabold text-white tracking-widest drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)] uppercase"
+                    :class="selectedMemberIndex === null ? 'mt-auto mb-8' : ''"
+                  >
+                    {{ member.name }}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- BIODATA PANEL -->
+            <!-- Mobile: bawah card. Desktop: memanjang di kanan image -->
+            <div 
+              class="bg-sky-50 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] shrink-0 max-h-[500px] md:max-h-[800px]"
+              :class="[
+                selectedMemberIndex === index 
+                  ? 'opacity-100 w-full md:w-[400px] lg:w-[520px] xl:w-[620px] md:flex-none mt-4 md:mt-0 px-5 py-5 md:p-8 rounded-2xl md:rounded-l-none border border-sky-200 shadow-2xl md:border-l-0' 
+                  : 'opacity-0 w-full md:w-[0.01px] h-0 md:h-full p-0 border-0 mt-0 m-0'
+              ]"
+            >
+              <div class="w-full h-full flex flex-col min-w-[280px]">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-4 border-b-2 border-sky-200 pb-3 w-full shrink-0">
+                  <h4 class="text-2xl md:text-3xl font-extrabold text-sky-800 tracking-tight">Biodata</h4>
+                  <button @click.stop="toggleMemberBio(index)" class="btn btn-sm btn-circle bg-sky-200 hover:bg-pink-400 hover:text-white border-none text-sky-700 shadow-sm transition-colors">
+                    <Icon name="mdi:close-thick" class="w-4 h-4" />
+                  </button>
+                </div>
                 
-                <!-- Teks overlay: Nama, Catchphrase, Instagram (rata tengah) -->
-                <div class="absolute bottom-0 left-0 w-full p-6 pb-8 flex flex-col items-center justify-center text-center text-white">
-                  <h3 class="text-3xl lg:text-4xl font-extrabold drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">{{ member.name }}</h3>
-                  
-                  <p class="text-sm md:text-base font-medium italic mt-2 text-gray-50 drop-shadow-md">
-                    "{{ member.catchphrase }}"
-                  </p>
-                  
-                  <a :href="member.instagram" target="_blank" class="mt-5 flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-pink-500 hover:text-white text-white backdrop-blur-md transition-all duration-300 hover:scale-110 shadow-lg">
-                    <Icon name="mdi:instagram" class="w-6 h-6" />
+                <!-- Isi Biodata -->
+                <div class="text-gray-700 whitespace-pre-line overflow-y-auto flex-grow max-h-[200px] md:max-h-none text-sm md:text-base font-medium leading-relaxed w-full pr-2" style="scrollbar-width: thin; scrollbar-color: #bae6fd transparent;">
+                  {{ member.biodata?.trim() || 'Belum Ada data' }}
+                </div>
+                
+                <!-- Footer -->
+                <div class="mt-4 pt-3 border-t border-sky-200/50 flex flex-col sm:flex-row justify-between items-center gap-3 w-full shrink-0">
+                  <p class="italic text-sky-600 font-bold text-sm text-center sm:text-left">"{{ member.catchphrase }}"</p>
+                  <a :href="member.instagram" target="_blank" @click.stop class="btn btn-sm bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white border-none rounded-full px-5 shadow-md hover:-translate-y-1 transition-all shrink-0">
+                    <Icon name="mdi:instagram" class="w-4 h-4 mr-1" /> Instagram
                   </a>
                 </div>
-              </figure>
-
+              </div>
             </div>
+            
           </div>
         </div>
 
@@ -551,18 +615,21 @@ const fallbackMembers = [
     image: '/images/profil_mily.webp',
     catchphrase: 'siberuang yang akan terus berlarian dikepalamu, hola aku mily!',
     instagram: 'https://www.instagram.com/milyy_chuu',
+    biodata: '',
   },
   {
     name: 'Dede',
     image: '/images/profil_dede.webp',
     catchphrase: 'Si kecil ceria, suka menarii, hai aku dede!',
     instagram: 'https://www.instagram.com/k4ylidde',
+    biodata: '',
   },
   {
     name: 'Yora',
     image: '/images/profil_yora.webp',
     catchphrase: 'sang bintang penyuka diksi, hai i\'m Yora, siap membawa mu menuju bianglala!',
     instagram: 'https://www.instagram.com/mellyora.a',
+    biodata: '',
   }
 ]
 
@@ -691,6 +758,27 @@ const merchImage = computed(() => {
 })
 
 // ============================================================
+// MEMBERS STATE & LOGIC
+// ============================================================
+const selectedMemberIndex = ref(null);
+const memberCardRefs = ref({});
+const memberCardHeight = ref(null);
+
+const toggleMemberBio = (index) => {
+  if (selectedMemberIndex.value === index) {
+    selectedMemberIndex.value = null;
+    memberCardHeight.value = null;
+  } else {
+    // Capture card height before opening biodata
+    const cardEl = memberCardRefs.value[index];
+    if (cardEl) {
+      memberCardHeight.value = cardEl.offsetHeight;
+    }
+    selectedMemberIndex.value = index;
+  }
+};
+
+// ============================================================
 // GALLERY STATE & LOGIC
 // ============================================================
 const currentGalleryIndex = ref(0);
@@ -741,5 +829,27 @@ html {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* Biodata slide transitions */
+.bio-slide-enter-active,
+.bio-slide-leave-active {
+  transition: all 0.4s ease;
+}
+.bio-slide-enter-from,
+.bio-slide-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+@media (min-width: 768px) {
+  .bio-slide-enter-from,
+  .bio-slide-leave-to {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  .bio-wrapper-locked {
+    max-height: var(--card-h, auto);
+    overflow: hidden;
+  }
 }
 </style>
