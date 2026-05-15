@@ -120,6 +120,7 @@ function transformRow(row: Record<string, any>, sheet: string): Record<string, a
         instagram: row.instagram || '',
         image: driveUrlToDirectImage(row.images || ''),
         biodata: row.biodata || '',
+        tiktok: row.tiktok || '',
       }
 
     case 'events':

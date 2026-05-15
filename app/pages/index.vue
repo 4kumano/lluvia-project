@@ -192,9 +192,14 @@
                 <!-- Footer -->
                 <div class="mt-4 pt-3 border-t border-sky-200/50 flex flex-col sm:flex-row justify-between items-center gap-3 w-full shrink-0">
                   <p class="italic text-sky-600 font-bold text-sm text-center sm:text-left">"{{ member.catchphrase }}"</p>
-                  <a :href="member.instagram" target="_blank" @click.stop class="btn btn-sm bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white border-none rounded-full px-5 shadow-md hover:-translate-y-1 transition-all shrink-0">
-                    <Icon name="mdi:instagram" class="w-4 h-4 mr-1" /> Instagram
-                  </a>
+                  <div class="flex gap-2 shrink-0">
+                    <a v-if="member.tiktok" :href="member.tiktok" target="_blank" @click.stop class="btn btn-sm bg-black hover:bg-gray-800 text-white border-none rounded-full px-4 shadow-md hover:-translate-y-1 transition-all">
+                      <Icon name="bi:tiktok" class="w-4 h-4 mr-1" /> TikTok
+                    </a>
+                    <a v-if="member.instagram" :href="member.instagram" target="_blank" @click.stop class="btn btn-sm bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white border-none rounded-full px-4 shadow-md hover:-translate-y-1 transition-all">
+                      <Icon name="mdi:instagram" class="w-4 h-4 mr-1" /> Instagram
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -616,6 +621,7 @@ const fallbackMembers = [
     catchphrase: 'siberuang yang akan terus berlarian dikepalamu, hola aku mily!',
     instagram: 'https://www.instagram.com/milyy_chuu',
     biodata: '',
+    tiktok: '',
   },
   {
     name: 'Dede',
@@ -623,6 +629,7 @@ const fallbackMembers = [
     catchphrase: 'Si kecil ceria, suka menarii, hai aku dede!',
     instagram: 'https://www.instagram.com/k4ylidde',
     biodata: '',
+    tiktok: '',
   },
   {
     name: 'Yora',
@@ -630,6 +637,7 @@ const fallbackMembers = [
     catchphrase: 'sang bintang penyuka diksi, hai i\'m Yora, siap membawa mu menuju bianglala!',
     instagram: 'https://www.instagram.com/mellyora.a',
     biodata: '',
+    tiktok: '',
   }
 ]
 
