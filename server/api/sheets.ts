@@ -111,16 +111,33 @@ function parseDate(dateStr: string): { day: string; month: string; year: string 
   return { day: '', month: '', year: '' }
 }
 
+/**
+ * Format social media URLs. If only username is provided, prepend the base URL.
+ */
+function formatSocialUrl(value: string, platform: 'instagram' | 'tiktok'): string {
+  if (!value) return ''
+  const trimmed = value.trim()
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed
+
+  const username = trimmed.startsWith('@') ? trimmed.slice(1) : trimmed
+  if (platform === 'instagram') {
+    return `https://www.instagram.com/${username}`
+  } else if (platform === 'tiktok') {
+    return `https://www.tiktok.com/@${username}`
+  }
+  return trimmed
+}
+
 function transformRow(row: Record<string, any>, sheet: string): Record<string, any> {
   switch (sheet) {
     case 'members':
       return {
         name: row.nama || '',
         catchphrase: row.catchphrase || '',
-        instagram: row.instagram || '',
+        instagram: formatSocialUrl(row.instagram || '', 'instagram'),
+        tiktok: formatSocialUrl(row.tiktok || '', 'tiktok'),
         image: driveUrlToDirectImage(row.images || ''),
         biodata: row.biodata || '',
-        tiktok: row.tiktok || '',
       }
 
     case 'events':
@@ -148,7 +165,7 @@ function transformRow(row: Record<string, any>, sheet: string): Record<string, a
       return {
         manager: row.manajer || '',
         whatsapp: row.whatsapp || '',
-        instagram: row.instagram || '',
+        instagram: formatSocialUrl(row.instagram || '', 'instagram'),
         ratecard: row.ratecard || '#',
       }
 
